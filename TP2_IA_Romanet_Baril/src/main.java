@@ -36,8 +36,8 @@ public class main {
 
         //generating tree from the problem
 
-        Tree<Integer> problemTree = new Tree<Integer>();
+        Tree problemTree = new Tree(new Node(problem.getInitialState()), problem);
 
-
+        problemTree.PrintTree(problemTree.getRootNode());
     }
 }
