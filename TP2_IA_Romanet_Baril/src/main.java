@@ -1,8 +1,10 @@
 public class main {
     public static void main(String[] args){
+
+        // generating the problem
+
         // matrix representing the problem
         int[][] graphMatrix = new int[20][20];
-
         graphMatrix[0][1] = 71;        graphMatrix[1][0] = 71;
         graphMatrix[1][2] = 75;        graphMatrix[2][1] = 75;
         graphMatrix[2][3] = 118;       graphMatrix[3][2] = 118;
@@ -26,6 +28,15 @@ public class main {
         graphMatrix[17][16] = 142;        graphMatrix[16][17] = 142;
         graphMatrix[15][16] = 92;        graphMatrix[16][15] = 92;
         graphMatrix[15][14] = 87;        graphMatrix[14][15] = 87;
+
+        int initialPosition = 2;
+        int goalPosition = 12;
+
+        Problem problem = new Problem(initialPosition,goalPosition,graphMatrix);
+
+        //generating tree from the problem
+
+        Tree<Integer> problemTree = new Tree<Integer>();
 
 
     }
