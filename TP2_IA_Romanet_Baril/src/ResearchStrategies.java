@@ -18,7 +18,7 @@ public class ResearchStrategies {
             Node element = stack.pop();
             List<Node> children = new ArrayList();
             if(element.getChild(0)!=null){
-                for(int i=0;i<element.getChildren().length;i++){
+                for(int i=0;i<element.getChildren().size();i++){
                     children.add(element.getChild(i));
                 }
                 for(int i=0;i<children.size();i++){
