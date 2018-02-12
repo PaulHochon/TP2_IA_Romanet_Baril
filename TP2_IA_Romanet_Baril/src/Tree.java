@@ -28,7 +28,7 @@ public class Tree {
                     done = true;
                     break;
                 }
-                done=false;
+                done = false;
             }
             if(!done)
             {
@@ -38,15 +38,14 @@ public class Tree {
                 CreateTree(problem,newNode,list);
                 //node.AddParent(new Node(item));
             }
-
         }
     }
 
     public void PrintTree(Node node) {
-        System.out.print(node.getNodeID());
+        System.out.print(node.getNodeID()+" ");
         for (Node item : node.getChildren()) {
             PrintTree(item);
         }
-        System.out.println("End Branch");
+        System.out.println("");
     }
 }
