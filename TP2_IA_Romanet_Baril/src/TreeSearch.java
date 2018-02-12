@@ -4,7 +4,6 @@ public class TreeSearch {
 
     public Tree Tree_Search(){
         Tree solution = new Tree();
-
         
 
         return solution;
