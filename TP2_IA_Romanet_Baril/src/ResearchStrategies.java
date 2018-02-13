@@ -24,10 +24,7 @@ public class ResearchStrategies {
                 for(int i=0;i<element.getChildren().size();i++){
                     children.add(element.getChild(i));
                 }
-                System.out.print("children of "+element.getNodeID()+" :");
-                for(Node nnn : children){
-                    System.out.println(" "+nnn.getNodeID()+" ");
-                }
+
                 for(int i=0;i<children.size();i++){
                     Node n=children.get(i);
                     if(n!=null && !marked.contains(n))
@@ -37,9 +34,9 @@ public class ResearchStrategies {
                 }
             }
         }
-        for(Node nnn : marked){
+        /*for(Node nnn : marked){
             System.out.print(" "+nnn.getNodeID()+" ");
-        }
+        }*/
         return marked;
     }
 
