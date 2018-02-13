@@ -39,7 +39,7 @@ public class Problem {
         this.graphMatrix=graphMatrix;
     }
     
-    // TODO operators
+    // operators
     public void GoTo(int nextState){
         if(graphMatrix[currentState][nextState]!=0){
             currentState = nextState;
@@ -47,7 +47,7 @@ public class Problem {
         }
     }
 
-    // TODO succession's functions
+    // succession's functions
     public List<Integer> S(int state){
         List<Integer> solution = new ArrayList<Integer>();
         for(int i = 0; i<graphMatrix.length ; i++)
@@ -59,7 +59,7 @@ public class Problem {
         return solution;
     }
 
-    // TODO path cost
+    // path cost
     private int cost;
     public int getCost() {
         return cost;
