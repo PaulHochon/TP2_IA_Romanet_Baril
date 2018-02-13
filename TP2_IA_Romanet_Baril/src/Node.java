@@ -10,14 +10,8 @@ public class Node {
     }
 
     private List<Node> parents;
-    public List<Node> getParents() {
-        return parents;
-    }
 
     private List<Node> children;
-    public List<Node> getChildren() {
-        return children;
-    }
 
     private int depth;
     // cost to reach this node from root

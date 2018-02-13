@@ -8,13 +8,14 @@ import java.util.Stack;
 public class ResearchStrategies {
 
 
-    public List<Node> DepthFirstSearch(Tree tree){
+    public static List<Node> DepthFirstSearch(Tree tree){
 
         Node current = tree.getRootNode();
         Stack<Node> stack = new Stack();
         stack.push(current);
         List<Node> marked = new ArrayList<>();
         while(!stack.isEmpty()){
+            System.out.println(""++"");
             Node element = stack.pop();
             List<Node> children = new ArrayList();
             if(element.getChild(0)!=null){
@@ -37,7 +38,7 @@ public class ResearchStrategies {
         return null;
     }
 
-    public List<Node> stackToList(Stack<Node> stack){
+    public static List<Node> stackToList(Stack<Node> stack){
         List<Node> list = new ArrayList<>();
         while(!stack.empty()){
             list.add(stack.pop());

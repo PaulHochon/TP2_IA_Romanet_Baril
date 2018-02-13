@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class main {
     public static void main(String[] args){
 
@@ -38,6 +40,11 @@ public class main {
 
         Tree problemTree = new Tree(new Node(problem.getInitialState()), problem);
 
-        problemTree.PrintTree(problemTree.getRootNode());
+        //problemTree.PrintTree(problemTree.getRootNode());
+
+        List<Node> list  = ResearchStrategies.DepthFirstSearch(problemTree);
+        for(Node l:list){
+            //System.out.print(" "+l.getNodeID()+" ");
+        }
     }
 }
