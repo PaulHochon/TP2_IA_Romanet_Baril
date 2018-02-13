@@ -22,7 +22,9 @@ public class Tree {
         list.add(node.getNodeID());
         boolean done = false;
 
+        // foreach node linked to the current node
         for (int item: problem.S(node.getNodeID())) {
+            // check to see if it was already created
             for(int markedNodes : list){
                 if(item==markedNodes){
                     done = true;
@@ -30,13 +32,16 @@ public class Tree {
                 }
                 done = false;
             }
+            // if not, add it to the list of marked nodes
+            // insert node into the children and parents list
+            // repeat the process for the newly found node
             if(!done)
             {
                 list.add(item);
                 Node newNode = new Node(item);
                 node.AddChild(newNode);
                 CreateTree(problem,newNode,list);
-                //node.AddParent(new Node(item));
+                node.AddParent(newNode);
             }
         }
     }

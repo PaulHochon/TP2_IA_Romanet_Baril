@@ -36,7 +36,6 @@ public class main {
 
         int initialPosition = 2;
         int goalPosition = 12;
-
         Problem problem = new Problem(initialPosition,goalPosition,graphMatrix);
 
         //generating tree from the problem
