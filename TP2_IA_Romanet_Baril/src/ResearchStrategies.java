@@ -14,27 +14,32 @@ public class ResearchStrategies {
         Stack<Node> stack = new Stack();
         stack.push(init);
         List<Node> marked = new ArrayList<>();
-        marked.add(init);
         while(!stack.isEmpty()){
+
             Node element = stack.pop();
+            marked.add(element);
             List<Node> children = new ArrayList();
             if(element.getChild(0)!=null){
+
                 for(int i=0;i<element.getChildren().size();i++){
                     children.add(element.getChild(i));
+                }
+                System.out.print("children of "+element.getNodeID()+" :");
+                for(Node nnn : children){
+                    System.out.println(" "+nnn.getNodeID()+" ");
                 }
                 for(int i=0;i<children.size();i++){
                     Node n=children.get(i);
                     if(n!=null && !marked.contains(n))
                     {
                         stack.push(n);
-                        marked.add(n);
                     }
                 }
             }
         }
-       /* for(Node nnn : marked){
+        for(Node nnn : marked){
             System.out.print(" "+nnn.getNodeID()+" ");
-        }*/
+        }
         return marked;
     }
 
