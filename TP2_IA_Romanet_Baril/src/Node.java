@@ -14,7 +14,7 @@ public class Node {
     private List<Node> children;
 
     private int depth;
-    // cost to reach this node from root
+
     private int cost;
 
     public Node getChild(int i) {

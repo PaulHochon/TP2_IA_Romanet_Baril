@@ -4,6 +4,7 @@ import java.util.List;
 public class Tree {
 
     private Node rootNode;
+
     public Node getRootNode() {
         return rootNode;
     }
@@ -12,78 +13,69 @@ public class Tree {
 
     List<Integer> marked = new ArrayList<>();
 
-    public Tree(Node rootNode, Problem problem){
+    public Tree(Node rootNode, Problem problem) {
         this.rootNode = rootNode;
         this.problem = problem;
-        CreateTree(problem,rootNode,marked);
+        CreateTree(problem, rootNode, marked);
     }
 
-    public void CreateTree(Problem problem, Node node, List<Integer> list){
+    public void CreateTree(Problem problem, Node node, List<Integer> list) {
         list.add(node.getNodeID());
-        boolean done = false;
 
         // foreach node linked to the current node
-        for (int item: problem.S(node.getNodeID())) {
-            // check to see if it was already created
-            for(int markedNodes : list){
-                if(item==markedNodes){
-                    done = true;
-                    break;
-                }
-                done = false;
-            }
-            // if not, add it to the list of marked nodes
-            // insert node into the children and parents list
-            // repeat the process for the newly found node
-            if(!done)
-            {
+        for (int item : problem.S(node.getNodeID())) {
+            if (!marked.contains(item)) {
+                // if not, add it to the list of marked nodes
+                // insert node into the children and parents list
+                // repeat the process for the newly found node
                 list.add(item);
                 Node newNode = new Node(item);
                 node.AddChild(newNode);
-                CreateTree(problem,newNode,list);
+                CreateTree(problem, newNode, list);
                 node.AddParent(newNode);
             }
         }
     }
 
-    public void PrintTree(Node node) {
-        System.out.print(node.getNodeID()+" ");
+    public static void PrintTree(Node node) {
+        System.out.print(node.getNodeID() + " ");
         for (Node item : node.getChildren()) {
             PrintTree(item);
         }
         System.out.println("");
     }
 
-    public void initializeWithProblem(Node node, Problem problem){ //Fonction appellée dans le tree search pour initialiser l'arbre selon le probleme
-        if(problem.getInitialState()==node.getNodeID()){
+    public void initializeWithProblem(Node node, Problem problem) { //Fonction appellée dans le tree search pour initialiser l'arbre selon le probleme
+        if (problem.getInitialState() == node.getNodeID()) {
             return;
         }
-        for(Node item : node.getChildren()){
-            if(problem.getInitialState()==node.getNodeID()){
-                this.rootNode=item;return;
+        for (Node item : node.getChildren()) {
+            if (problem.getInitialState() == node.getNodeID()) {
+                this.rootNode = item;
+                return;
             }
-            initializeWithProblem(item,problem);
+            initializeWithProblem(item, problem);
         }
     }
 
-    public List<Integer> Tree_Search(Problem problem, String strategy){
+    public List<Integer> Tree_Search(Problem problem, String strategy) {
         List<Integer> list = new ArrayList<>();
-        this.initializeWithProblem(rootNode,problem);  //On initialise l'arbre pour s'assurer que l'on part bien du point initial du probleme
+        this.initializeWithProblem(rootNode, problem);  //On initialise l'arbre pour s'assurer que l'on part bien du point initial du probleme
         List<Node> researchorder = ResearchStrategies.researchStrategy(this, strategy);
         Node current = null;
-        do{
-            if(researchorder.isEmpty()){
+        do {
+            if (researchorder.isEmpty()) {
                 return null;
             }
             problem.GoTo(researchorder.get(0).getNodeID());
-            current=researchorder.get(0);
+            current = researchorder.get(0);
             list.add(current.getNodeID());
-            if(problem.TestGoal(current.getNodeID())){
+            if (problem.TestGoal(current.getNodeID())) {
                 return list;
             }
             researchorder.remove(0);
 
-        }while(!researchorder.isEmpty());
+        } while (!researchorder.isEmpty());
 
         return list;
     }

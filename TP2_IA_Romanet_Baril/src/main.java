@@ -43,19 +43,5 @@ public class main {
         agent.SolveProblem(strategy);
 
         agent.PrintSolution(strategy);
-
-        /*//generating tree from the problem
-
-        Tree problemTree = new Tree(new Node(problem.getInitialState()), problem);
-
-        //problemTree.PrintTree(problemTree.getRootNode());
-
-
-
-        List<Integer> list  = problemTree.Tree_Search(problem,strategy);
-        System.out.println("\n En utilisant la strategie " + strategy + " nous obtenons le parcours suivant : ");
-        for(int i :list){
-            System.out.print(" "+i+" ");
-        }*/
     }
 }
