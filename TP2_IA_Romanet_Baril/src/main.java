@@ -3,6 +3,9 @@ import java.util.List;
 public class main {
     public static void main(String[] args){
 
+        //strategy choice
+        String strategy ="DepthFirstSearch";
+
         // generating the problem
 
         // matrix representing the problem
@@ -42,9 +45,10 @@ public class main {
 
         //problemTree.PrintTree(problemTree.getRootNode());
 
-        List<Node> list  = ResearchStrategies.DepthFirstSearch(problemTree);
-        for(Node l:list){
-            //System.out.print(" "+l.getNodeID()+" ");
+        List<Integer> list  = problemTree.Tree_Search(problem,strategy);
+        System.out.println("\n En utilisant la strategie " + strategy + " nous obtenons le parcours suivant : ");
+        for(int i :list){
+            System.out.print(" "+i+" ");
         }
     }
 }

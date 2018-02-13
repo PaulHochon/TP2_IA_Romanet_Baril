@@ -8,14 +8,14 @@ import java.util.Stack;
 public class ResearchStrategies {
 
 
-    public static List<Node> DepthFirstSearch(Tree tree){
-
-        Node current = tree.getRootNode();
+    public static List<Node> DepthFirstSearch(Tree tree){//cette fonction parcourt un arbre donné selon la stratégie du DepthFirstSearch
+                                                        //et retourne la liste de l'ordre de passage effectué
+        Node init = tree.getRootNode();
         Stack<Node> stack = new Stack();
-        stack.push(current);
+        stack.push(init);
         List<Node> marked = new ArrayList<>();
+        marked.add(init);
         while(!stack.isEmpty()){
-            System.out.println(""++"");
             Node element = stack.pop();
             List<Node> children = new ArrayList();
             if(element.getChild(0)!=null){
@@ -28,14 +28,14 @@ public class ResearchStrategies {
                     {
                         stack.push(n);
                         marked.add(n);
-                        if(tree.problem.TestGoal(n.getNodeID())){
-                            return stackToList(stack);
-                        }
                     }
                 }
             }
         }
-        return null;
+       /* for(Node nnn : marked){
+            System.out.print(" "+nnn.getNodeID()+" ");
+        }*/
+        return marked;
     }
 
     public static List<Node> stackToList(Stack<Node> stack){
@@ -44,6 +44,15 @@ public class ResearchStrategies {
             list.add(stack.pop());
         }
         return list;
+    }
+
+    public static List<Node> researchStrategy(Tree tree, String strategy){//cette fonction lit la strategie demandée et retourne
+                                                                          // l'ordre de passage des noeuds de l'arbre donné selon celle ci
+
+        switch(strategy){
+            case "DepthFirstSearch" : return DepthFirstSearch(tree);
+        }
+        return null;
     }
 
 }

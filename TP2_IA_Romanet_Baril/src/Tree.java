@@ -48,4 +48,39 @@ public class Tree {
         }
         System.out.println("");
     }
+
+    public void initializeWithProblem(Node node, Problem problem){ //Fonction appellée dans le tree search pour initialiser l'arbre selon le probleme
+        if(problem.getInitialState()==node.getNodeID()){
+            return;
+        }
+        for(Node item : node.getChildren()){
+            if(problem.getInitialState()==node.getNodeID()){
+                this.rootNode=item;return;
+            }
+            initializeWithProblem(item,problem);
+        }
+    }
+
+    public List<Integer> Tree_Search(Problem problem, String strategy){
+        List<Integer> list = new ArrayList<>();
+        this.initializeWithProblem(rootNode,problem);  //On initialise l'arbre pour s'assurer que l'on part bien du point initial du probleme
+        List<Node> researchorder = ResearchStrategies.researchStrategy(this, strategy);
+        Node current = null;
+        do{
+            if(researchorder.isEmpty()){
+                return null;
+            }
+            problem.GoTo(researchorder.get(0).getNodeID());
+            current=researchorder.get(0);
+            list.add(current.getNodeID());
+            if(problem.TestGoal(current.getNodeID())){
+                return list;
+            }
+            researchorder.remove(0);
+
+        }while(!researchorder.isEmpty());
+
+        return list;
+    }
+
 }
