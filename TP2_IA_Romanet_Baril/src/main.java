@@ -3,9 +3,6 @@ import java.util.List;
 public class main {
     public static void main(String[] args){
 
-        //strategy choice
-        String strategy ="DepthFirstSearch";
-
         // generating the problem
 
         // matrix representing the problem
@@ -38,16 +35,27 @@ public class main {
         int goalPosition = 12;
         Problem problem = new Problem(initialPosition,goalPosition,graphMatrix);
 
-        //generating tree from the problem
+        //strategy choice
+        String strategy ="DepthFirstSearch";
+
+        Agent agent = new Agent(problem);
+
+        agent.SolveProblem(strategy);
+
+        agent.PrintSolution(strategy);
+
+        /*//generating tree from the problem
 
         Tree problemTree = new Tree(new Node(problem.getInitialState()), problem);
 
         //problemTree.PrintTree(problemTree.getRootNode());
 
+
+
         List<Integer> list  = problemTree.Tree_Search(problem,strategy);
         System.out.println("\n En utilisant la strategie " + strategy + " nous obtenons le parcours suivant : ");
         for(int i :list){
             System.out.print(" "+i+" ");
-        }
+        }*/
     }
 }
