@@ -36,7 +36,8 @@ public class main {
         Problem problem = new Problem(initialPosition,goalPosition,graphMatrix);
 
         //strategy choice
-        String strategy ="DepthFirstSearch";
+        //String strategy ="DepthFirstSearch";
+        String strategy ="AStarSearch";
 
         Agent agent = new Agent(problem);
 

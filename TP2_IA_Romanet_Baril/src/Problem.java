@@ -72,4 +72,11 @@ public class Problem {
         }
         else return -1;
     }
+
+    public int getTravelCost(Node depart, Node arrival){
+        return this.getGraphMatrix()[depart.getNodeID()][arrival.getNodeID()];
+    }
+    public int getTotalCost(Node depart, Node arrival){
+        return this.getGraphMatrix()[depart.getNodeID()][arrival.getNodeID()]+arrival.getCost();
+    }
 }

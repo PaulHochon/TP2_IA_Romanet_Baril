@@ -46,12 +46,29 @@ public class Node {
         this.parents = parents;
     }
 
+
     public List<Node> getChildren() {
         return children;
     }
 
     public void setChildren(List<Node> children) {
         this.children = children;
+    }
+
+    public int getDepth() {
+        return depth;
+    }
+
+    public void setDepth(int depth) {
+        this.depth = depth;
+    }
+
+    public int getCost() {
+        return cost;
+    }
+
+    public void setCost(int cost) {
+        this.cost = cost;
     }
 }
 

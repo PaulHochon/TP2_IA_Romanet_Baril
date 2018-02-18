@@ -44,6 +44,15 @@ public class Tree {
         }
         System.out.println("");
     }
+    public Node getNodeByID(int id,Node n) {
+        if(n.getNodeID()==id){
+            return n;
+        }
+        for (Node item : n.getChildren()) {
+            return this.getNodeByID(id,item);
+        }
+            return null;
+    }
 
     public void initializeWithProblem(Node node, Problem problem) { //Fonction appellée dans le tree search pour initialiser l'arbre selon le probleme
         if (problem.getInitialState() == node.getNodeID()) {
@@ -58,10 +67,17 @@ public class Tree {
         }
     }
 
+    public int getTravelCost(Node depart, Node arrival){
+        return this.problem.getGraphMatrix()[depart.getNodeID()][arrival.getNodeID()];
+    }
+    public int getTotalCost(Node depart, Node arrival){
+        return this.problem.getGraphMatrix()[depart.getNodeID()][arrival.getNodeID()]+arrival.getCost();
+    }
+
     public List<Integer> Tree_Search(Problem problem, String strategy) {
         List<Integer> list = new ArrayList<>();
         this.initializeWithProblem(rootNode, problem);  //On initialise l'arbre pour s'assurer que l'on part bien du point initial du probleme
-        List<Node> researchorder = ResearchStrategies.researchStrategy(this, strategy);
+        List<Node> researchorder = ResearchStrategies.researchStrategy(this, strategy,this.getNodeByID(this.problem.getGoalState(),this.getRootNode()));
         Node current = null;
         do {
             if (researchorder.isEmpty()) {
