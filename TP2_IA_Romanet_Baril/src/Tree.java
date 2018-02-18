@@ -6,12 +6,6 @@ public class Tree {
 
     private Node rootNode;
 
-    public Tree(Node node, Problem problem, HashMap<Integer, Integer> mapping) {
-        this.rootNode = rootNode;
-        this.problem = problem;
-        CreateTree(problem, rootNode, marked, mapping);
-    }
-
     public Node getRootNode() {
         return rootNode;
     }
@@ -19,6 +13,12 @@ public class Tree {
     Problem problem;
 
     List<Integer> marked = new ArrayList<>();
+
+    public Tree(Node rootNode, Problem problem, HashMap<Integer, Integer> mapping) {
+        this.rootNode = rootNode;
+        this.problem = problem;
+        CreateTree(problem, rootNode, marked, mapping);
+    }
 
     public Tree(Node rootNode, Problem problem) {
         this.rootNode = rootNode;

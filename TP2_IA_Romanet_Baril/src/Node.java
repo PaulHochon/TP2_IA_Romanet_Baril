@@ -15,6 +15,7 @@ public class Node {
 
     private int depth;
 
+    // variable used for the heuristic
     private int cost;
 
     public Node getChild(int i) {
