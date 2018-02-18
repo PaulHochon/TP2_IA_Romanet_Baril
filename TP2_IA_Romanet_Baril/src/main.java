@@ -1,3 +1,4 @@
+import java.util.HashMap;
 import java.util.List;
 
 public class main {
@@ -30,6 +31,30 @@ public class main {
         graphMatrix[17][16] = 142;        graphMatrix[16][17] = 142;
         graphMatrix[15][16] = 92;        graphMatrix[16][15] = 92;
         graphMatrix[15][14] = 87;        graphMatrix[14][15] = 87;
+
+        HashMap<Integer,Integer> straightlinedistance = new HashMap<Integer, Integer>();
+        straightlinedistance.put(0,380);
+        straightlinedistance.put(1,374);
+        straightlinedistance.put(2,366);
+        straightlinedistance.put(3,329);
+        straightlinedistance.put(4,253);
+        straightlinedistance.put(5,244);
+        straightlinedistance.put(6,241);
+        straightlinedistance.put(7,242);
+        straightlinedistance.put(8,193);
+        straightlinedistance.put(9,160);
+        straightlinedistance.put(10,178);
+        straightlinedistance.put(11,98);
+        straightlinedistance.put(12,0);
+        straightlinedistance.put(13,77);
+        straightlinedistance.put(14,234);
+        straightlinedistance.put(15,226);
+        straightlinedistance.put(16,199);
+        straightlinedistance.put(17,80);
+        straightlinedistance.put(18,151);
+        straightlinedistance.put(19,161);
+
+
 
         int initialPosition = 2;
         int goalPosition = 12;

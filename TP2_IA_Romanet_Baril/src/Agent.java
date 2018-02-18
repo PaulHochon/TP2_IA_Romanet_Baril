@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Agent {
@@ -10,6 +11,11 @@ public class Agent {
     public Agent(Problem problem){
         this.problem = problem;
         this.problemTree = new Tree(new Node(problem.getInitialState()),problem);
+        this.solutionList = new ArrayList<Integer>();
+    }
+    public Agent(Problem problem, HashMap<Integer,Integer> mapping){
+        this.problem = problem;
+        this.problemTree = new Tree(new Node(problem.getInitialState()),problem,mapping);
         this.solutionList = new ArrayList<Integer>();
     }
 
