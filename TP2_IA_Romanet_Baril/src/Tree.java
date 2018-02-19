@@ -7,7 +7,7 @@ public class Tree {
     private Node rootNode;
 
     public Tree(Node node, Problem problem, HashMap<Integer, Integer> mapping) {
-        this.rootNode = rootNode;
+        this.rootNode = node;
         this.problem = problem;
         CreateTree(problem, rootNode, marked, mapping);
     }
@@ -27,6 +27,8 @@ public class Tree {
     }
 
     public void CreateTree(Problem problem, Node node, List<Integer> list, HashMap<Integer, Integer> mapping) {
+        System.out.print("cost:"+mapping.get(node.getNodeID()));
+        if(mapping!=null)node.setCost(mapping.get(node.getNodeID()));
         list.add(node.getNodeID());
 
         // foreach node linked to the current node
@@ -37,11 +39,9 @@ public class Tree {
                 // repeat the process for the newly found node
                 list.add(item);
                 Node newNode = new Node(item);
-                if(mapping!=null)newNode.setCost(mapping.get(item));
                 node.AddChild(newNode);
                 if(mapping==null){
                     CreateTree(problem, newNode, list,null);
-
                 }
                 else{
                     CreateTree(problem, newNode, list,mapping);

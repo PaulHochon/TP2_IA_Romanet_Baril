@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 /**
  * Created by adrie on 12/02/2018.
@@ -9,14 +6,14 @@ import java.util.Stack;
 public class ResearchStrategies {
 
     public static List<Node> AStarSearch(Tree tree, Node goal){
-
+        List<Node> returnlist = new ArrayList<>();
         List<Node> open = new ArrayList<>();
         List<Node> closed = new ArrayList<>();
         List<Node> queue = new ArrayList<>();
         HashMap<Node,Node> parents = new HashMap<Node,Node>();
         queue.add(tree.getRootNode());
 
-        int couttotal=0;
+        int couttotal=Integer.MAX_VALUE;
         Node current = tree.getRootNode();
         open.add(current);
 
@@ -29,7 +26,7 @@ public class ResearchStrategies {
             System.out.println("Boucle : "+compteur);compteur++;
             System.out.print("liste actuelle : ");
             for(Node n : closed){
-                System.out.print(" "+n.getNodeID()+" ");
+                System.out.print(" "+n.getNodeID()+"("+tree.getTotalCost(current,n)+")");
             }
             System.out.println("");
             open.remove(current);
@@ -37,37 +34,51 @@ public class ResearchStrategies {
             if(!closed.contains(current)){
                 closed.add(current);
                 if(current.equals(goal)){
-                    return closed;
+                    return rebuildPath(parents);
                 }
                 for(Node child:current.getChildren()){
-                    parents.put(child,current);
-                    if(!closed.contains(child)){
-                        if(tree.getTotalCost(current,child)<couttotal||!open.contains(child)){
+                    if(!closed.contains(child)&&tree.getTotalCost(current,child)<couttotal){
+                        if(child.equals(getBestChild(current.getChildren(),current,tree))||!queue.contains(child)){
+                            returnlist.add(child);
+                            parents.put(child,current);
+
+                            System.out.print("BESTCHILD: "+child.getNodeID());
                             couttotal=tree.getTotalCost(current,child);
                             current=parents.get(child);
                             if(!open.contains(child)){
                                 open.add(child);
                             }
                         }
-                        queue.add(child);
                     }
+                    queue.add(child);
+
                 }
             }
 
         }
-        return closed;
+        System.out.print("SUPERMAN");
+        return returnlist;
     }
 
-    public static Node getBestChild(List<Node> children){
-        if(children==null){
+    public static List<Node> rebuildPath(HashMap<Node,Node> parents){
+        List<Node> returnlist = new ArrayList<>();
+        for(Node n : parents.keySet()){
+            System.out.print("BATMAN"+n.getNodeID()+parents.get(n).getNodeID());
+            returnlist.add(n);returnlist.add(parents.get(n));
+        }
+        return returnlist;
+    }
+
+    public static Node getBestChild(List<Node> children, Node parent, Tree tree){
+        if(children==null||parent==null){
             return null;
         }
-        int coutmin=children.get(0).getCost();
+        int coutmin=Integer.MAX_VALUE;
         Node bestchild = null;
         for(Node child : children){
-            if(child.getCost()<coutmin){
+            if(tree.getTotalCost(parent,child)<coutmin){
                 bestchild=child;
-                coutmin=bestchild.getCost();
+                coutmin=tree.getTotalCost(parent,child);
             }
         }
         return bestchild;

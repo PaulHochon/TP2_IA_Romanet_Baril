@@ -64,10 +64,11 @@ public class main {
         //String strategy ="DepthFirstSearch";
         String strategy ="AStarSearch";
 
-        Agent agent = new Agent(problem);
+        Agent agent = new Agent(problem,straightlinedistance);
 
         agent.SolveProblem(strategy);
 
         agent.PrintSolution(strategy);
+        System.out.println("SUPERBESTCHILD:  "+ResearchStrategies.getBestChild(agent.getProblemTree().getNodeByID(2,agent.getProblemTree().getRootNode()).getChildren(),agent.getProblemTree().getNodeByID(2,agent.getProblemTree().getRootNode()),agent.getProblemTree()).getNodeID());
     }
 }

@@ -30,4 +30,11 @@ public class Agent {
         }
     }
 
+    public Problem getProblem() {
+        return problem;
+    }
+
+    public Tree getProblemTree() {
+        return problemTree;
+    }
 }
