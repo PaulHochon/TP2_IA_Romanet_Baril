@@ -5,6 +5,7 @@ import java.util.*;
  */
 public class ResearchStrategies {
 
+
     public static List<Node> AStarSearch(Tree tree, Node goal){
         List<Node> returnlist = new ArrayList<>();
         List<Node> open = new ArrayList<>();
@@ -84,7 +85,6 @@ public class ResearchStrategies {
         return bestchild;
     }
 
-
     public static List<Node> DepthFirstSearch(Tree tree){//cette fonction parcourt un arbre donné selon la stratégie du DepthFirstSearch
                                                         //et retourne la liste de l'ordre de passage effectué
         Node init = tree.getRootNode();
@@ -127,21 +127,18 @@ public class ResearchStrategies {
 
     public static List<Node> researchStrategy(Tree tree, String strategy){//cette fonction lit la strategie demandée et retourne
                                                                           // l'ordre de passage des noeuds de l'arbre donné selon celle ci
-
         switch(strategy){
             case "DepthFirstSearch" : return DepthFirstSearch(tree);
-            case "AStarSearch" : return AStarSearch(tree,tree.getNodeByID(tree.problem.getGoalState(),tree.getRootNode()));
+            case "AStarSearch" : return AStarSearch(tree,tree.getNodeByID(tree.getProblem().getGoalState(),tree.getRootNode()));
         }
         return null;
     }
 
     public static List<Node> researchStrategy(Tree tree, String strategy, Node goal){//cette fonction lit la strategie demandée et retourne
         // l'ordre de passage des noeuds de l'arbre donné selon celle ci
-
         if(goal==null){
             return researchStrategy(tree,strategy);
         }
-
         switch(strategy){
             case "DepthFirstSearch" : return DepthFirstSearch(tree);
             case "AStarSearch" : System.out.println("batman");return AStarSearch(tree,goal);

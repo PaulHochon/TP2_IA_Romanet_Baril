@@ -5,38 +5,45 @@ import java.util.List;
 public class Tree {
 
     private Node rootNode;
-
-    public Tree(Node node, Problem problem, HashMap<Integer, Integer> mapping) {
-        this.rootNode = node;
-        this.problem = problem;
-        CreateTree(problem, rootNode, marked, mapping);
-    }
-
     public Node getRootNode() {
         return rootNode;
     }
 
-    Problem problem;
+    private Problem problem;
+    public Problem getProblem() { return problem; }
 
-    List<Integer> marked = new ArrayList<>();
+    private List<Integer> marked = new ArrayList<>();
+    public List<Integer> getMarked() { return marked; }
+
+    public Tree(Node rootNode, Problem problem, HashMap<Integer, Integer> mapping) {
+        this.rootNode = rootNode;
+        this.problem = problem;
+        marked.add(rootNode.getNodeID());
+        CreateTree(problem, rootNode, marked, mapping);
+    }
 
     public Tree(Node rootNode, Problem problem) {
         this.rootNode = rootNode;
         this.problem = problem;
+        marked.add(rootNode.getNodeID());
         CreateTree(problem, rootNode, marked, null);
     }
 
+
     public void CreateTree(Problem problem, Node node, List<Integer> list, HashMap<Integer, Integer> mapping) {
-        System.out.print("cost:"+mapping.get(node.getNodeID()));
-        if(mapping!=null)node.setCost(mapping.get(node.getNodeID()));
+        if(mapping!=null)
+        {
+            node.setCost(mapping.get(node.getNodeID()));
+        }
+
         list.add(node.getNodeID());
 
         // foreach node linked to the current node
         for (int item : problem.S(node.getNodeID())) {
             if (!marked.contains(item)) {
                 // if not, add it to the list of marked nodes
-                // insert node into the children and parents list
-                // repeat the process for the newly found node
+                // insert node into the children list
+                // repeat the process for the newly created node
                 list.add(item);
                 Node newNode = new Node(item);
                 node.AddChild(newNode);
@@ -46,10 +53,10 @@ public class Tree {
                 else{
                     CreateTree(problem, newNode, list,mapping);
                 }
-                node.AddParent(newNode);
             }
         }
     }
+
 
     public static void PrintTree(Node node) {
         System.out.print(node.getNodeID() + " ");
@@ -58,6 +65,8 @@ public class Tree {
         }
         System.out.println("");
     }
+
+    // get Node from nodeId
     public Node getNodeByID(int id,Node n) {
         if(n.getNodeID()==id){
             return n;
@@ -68,7 +77,8 @@ public class Tree {
             return null;
     }
 
-    public void initializeWithProblem(Node node, Problem problem) { //Fonction appellée dans le tree search pour initialiser l'arbre selon le probleme
+    //Fonction appellée dans le tree search pour initialiser l'arbre selon le probleme
+    public void initializeWithProblem(Node node, Problem problem) {
         if (problem.getInitialState() == node.getNodeID()) {
             return;
         }
@@ -81,12 +91,16 @@ public class Tree {
         }
     }
 
+    // get real cost to go from depart to arrival (edge value)
     public int getTravelCost(Node depart, Node arrival){
         return this.problem.getGraphMatrix()[depart.getNodeID()][arrival.getNodeID()];
     }
+
+    // get real cost + mapping cost (used for the heuristic)
     public int getTotalCost(Node depart, Node arrival){
         return this.problem.getGraphMatrix()[depart.getNodeID()][arrival.getNodeID()]+arrival.getCost();
     }
+
 
     public List<Integer> Tree_Search(Problem problem, String strategy) {
         List<Integer> list = new ArrayList<>();
@@ -104,9 +118,7 @@ public class Tree {
                 return list;
             }
             researchorder.remove(0);
-
         } while (!researchorder.isEmpty());
-
         return list;
     }
 

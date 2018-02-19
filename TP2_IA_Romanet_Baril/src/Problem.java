@@ -21,24 +21,24 @@ public class Problem {
         return initialState;
     }
 
-    // goal test
+    // goal state
     private int goalState;
     public int getGoalState(){
         return goalState;
     }
 
     public boolean TestGoal(int currentState){
-
         return currentState == goalState;
     }
-    
+
     public Problem(int initialState, int goalState, int[][] graphMatrix){
         this.initialState=initialState;
         this.currentState=initialState;
         this.goalState=goalState;
         this.graphMatrix=graphMatrix;
     }
-    
+
+
     // operators
     public void GoTo(int nextState){
         if(graphMatrix[currentState][nextState]!=0){
@@ -46,6 +46,7 @@ public class Problem {
             cost+=1;
         }
     }
+
 
     // succession's functions
     public List<Integer> S(int state){
@@ -66,7 +67,7 @@ public class Problem {
     }
 
     // cost between nodes linked by an edge
-    public int PathCost(int state1, int state2){
+    public int EdgeCost(int state1, int state2){
         if(graphMatrix[state1][state2]!=0){
             return graphMatrix[state1][state2];
         }
@@ -76,6 +77,8 @@ public class Problem {
     public int getTravelCost(Node depart, Node arrival){
         return this.getGraphMatrix()[depart.getNodeID()][arrival.getNodeID()];
     }
+
+    // real cost + mapping cost (Straight line cost for example)
     public int getTotalCost(Node depart, Node arrival){
         return this.getGraphMatrix()[depart.getNodeID()][arrival.getNodeID()]+arrival.getCost();
     }
