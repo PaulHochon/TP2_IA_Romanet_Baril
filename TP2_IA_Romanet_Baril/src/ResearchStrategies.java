@@ -39,7 +39,7 @@ public class ResearchStrategies {
                 }
                 for(Node child:current.getChildren()){
                     if(!closed.contains(child)&&tree.getTotalCost(current,child)<couttotal){
-                        if(child.equals(getBestChild(current.getChildren(),current,tree))||!queue.contains(child)){
+                        if((child.getNodeID()==(getBestChild(current.getChildren(),current,tree)).getNodeID())&&!queue.contains(child)){
                             returnlist.add(child);
                             parents.put(child,current);
 

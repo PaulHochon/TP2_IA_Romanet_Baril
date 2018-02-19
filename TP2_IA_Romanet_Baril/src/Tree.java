@@ -53,12 +53,13 @@ public class Tree {
         }
 
         while(!frontier.isEmpty()){
-            if(mapping==null){
-                CreateTree(problem, frontier.pop(), list,null);
-            }
-            else{
-                CreateTree(problem, frontier.pop(), list,mapping);
-            }
+            Node nextNode = frontier.pop();
+                if(mapping==null){
+                    CreateTree(problem, nextNode, list,null);
+                }
+                else{
+                    CreateTree(problem, nextNode, list,mapping);
+                }
         }
 
         /*if(mapping!=null)
