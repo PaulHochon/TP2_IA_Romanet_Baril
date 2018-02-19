@@ -85,8 +85,9 @@ public class ResearchStrategies {
         return bestchild;
     }
 
-    public static List<Node> DepthFirstSearch(Tree tree){//cette fonction parcourt un arbre donné selon la stratégie du DepthFirstSearch
-                                                        //et retourne la liste de l'ordre de passage effectué
+    //cette fonction parcourt un arbre donné selon la stratégie du DepthFirstSearch
+    //et retourne la liste de l'ordre de passage effectué
+    public static List<Node> DepthFirstSearch(Tree tree){
         Node init = tree.getRootNode();
         Stack<Node> stack = new Stack();
         stack.push(init);

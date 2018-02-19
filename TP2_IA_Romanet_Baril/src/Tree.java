@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Stack;
 
 public class Tree {
 
@@ -31,17 +32,43 @@ public class Tree {
 
 
     public void CreateTree(Problem problem, Node node, List<Integer> list, HashMap<Integer, Integer> mapping) {
+        Stack<Node> frontier = new Stack<>();
+
         if(mapping!=null)
         {
             node.setCost(mapping.get(node.getNodeID()));
         }
 
-        list.add(node.getNodeID());
+        for (int item : problem.S(node.getNodeID())) {
+            if(!list.contains(item)){
+                frontier.push(new Node(item));
+            }
+        }
 
+        for (Node newNode : frontier){
+            if(!list.contains(newNode.getNodeID())){
+                list.add(newNode.getNodeID());
+                node.AddChild(newNode);
+            }
+        }
+
+        while(!frontier.isEmpty()){
+            if(mapping==null){
+                CreateTree(problem, frontier.pop(), list,null);
+            }
+            else{
+                CreateTree(problem, frontier.pop(), list,mapping);
+            }
+        }
+
+        /*if(mapping!=null)
+        {
+            node.setCost(mapping.get(node.getNodeID()));
+        }
         // foreach node linked to the current node
         for (int item : problem.S(node.getNodeID())) {
             if (!marked.contains(item)) {
-                // if not, add it to the list of marked nodes
+                // if not marked, add it to the list of marked nodes
                 // insert node into the children list
                 // repeat the process for the newly created node
                 list.add(item);
@@ -54,7 +81,7 @@ public class Tree {
                     CreateTree(problem, newNode, list,mapping);
                 }
             }
-        }
+        }*/
     }
 
 
