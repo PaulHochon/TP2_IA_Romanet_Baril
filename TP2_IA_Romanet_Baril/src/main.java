@@ -61,8 +61,9 @@ public class main {
         Problem problem = new Problem(initialPosition,goalPosition,graphMatrix,straightlinedistance);
 
         //strategy choice
+        String strategy = new String();
         //String strategy ="DepthFirstSearch";
-        String strategy ="AStarSearch";
+        //String strategy ="AStarSearch";
 
         Agent agent = new Agent(problem,straightlinedistance);
 

@@ -26,7 +26,7 @@ public class Agent {
     }
 
     public void SolveProblem(String strategyChoice){
-        solutionNode = problem.getInitialState().Tree_Search(problem,"",new ArrayList<>());
+        solutionNode = problem.getInitialState().Tree_Search(problem,strategyChoice,new ArrayList<>());
         //solutionList = problemTree.Tree_Search(problem,strategyChoice);
     }
 

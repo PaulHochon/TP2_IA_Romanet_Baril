@@ -61,6 +61,8 @@ public class Node {
         this.pathCost = pathCost;
     }
 
+    private boolean isExplored = false;
+
     public Node(int nodeID, int hCost) {
         this.nodeID = nodeID;
         parent = null;
@@ -73,7 +75,7 @@ public class Node {
         frontier.add(new Node(problem.getInitialState().getNodeID(), problem.getMapping().get(problem.getInitialState().getNodeID())));
 
         while (!frontier.isEmpty()){
-            Node nextNode = RemoveFront(frontier);
+            Node nextNode = RemoveFront(frontier,strategy);
             if(problem.TestGoal(nextNode)){
                 return nextNode;
             }
@@ -86,19 +88,38 @@ public class Node {
     // In this function strategy matters
     // the node you pick from the frontier changes depending on the strategy
     // here we pick the most promising node
-    public Node RemoveFront(List<Node> frontier){
+    public Node RemoveFront(List<Node> frontier,String strategy){
         Node chosenNode = new Node(-1,0);
-        int maxCost = Integer.MAX_VALUE;
 
-        for(Node item : frontier)
-        {
-            if(item.getCost()<maxCost){
-                chosenNode = item;
-                maxCost = item.getCost();
-            }
+        switch (strategy){
+            case "AStarSearch":
+                int maxCost = Integer.MAX_VALUE;
+
+                for(Node item : frontier)
+                {
+                    if(item.getCost()<maxCost){
+                        chosenNode = item;
+                        maxCost = item.getCost();
+                    }
+                }
+
+                frontier.remove(chosenNode);
+                break;
+                default:
+                    // random
+                    int i = (int)Math.random()*(frontier.size() - 1);
+
+                    // always returns 4 10 12
+                    /*int i = -1;
+                    do {
+                        i++;
+                    }
+                    while(frontier.get(i).isExplored);*/
+
+                    chosenNode = frontier.get(i);
+                    frontier.remove(i);
+                    break;
         }
-
-        frontier.remove(chosenNode);
 
         return chosenNode;
     }
