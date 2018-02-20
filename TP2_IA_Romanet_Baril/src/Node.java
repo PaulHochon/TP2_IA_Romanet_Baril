@@ -40,16 +40,16 @@ public class Node {
 
     private int cost;
     public int getCost() {
-        return hcost + pathCost;
+        return hCost + pathCost;
     }
 
     // variable used for the heuristic
-    private int hcost;
+    private int hCost;
     public int gethCost() {
-        return hcost;
+        return hCost;
     }
-    public void setHcost(int hcost) {
-        this.hcost = hcost;
+    public void setHcost(int hCost) {
+        this.hCost = hCost;
     }
 
     // path cost to this node from root
@@ -61,13 +61,16 @@ public class Node {
         this.pathCost = pathCost;
     }
 
-    public Node(int nodeID) {
+    public Node(int nodeID, int hCost) {
         this.nodeID = nodeID;
+        parent = null;
         children = new ArrayList<Node>();
+        depth = 0;
+        this.hCost = hCost;
     }
 
     public Node Tree_Search(Problem problem, String strategy, List<Node> frontier) {
-        frontier.add(new Node(problem.getInitialState().getNodeID()));
+        frontier.add(new Node(problem.getInitialState().getNodeID(), problem.getMapping().get(problem.getInitialState().getNodeID())));
 
         while (!frontier.isEmpty()){
             Node nextNode = RemoveFront(frontier);
@@ -80,8 +83,11 @@ public class Node {
         return null;
     }
 
+    // In this function strategy matters
+    // the node you pick from the frontier changes depending on the strategy
+    // here we pick the most promising node
     public Node RemoveFront(List<Node> frontier){
-        Node chosenNode = new Node(-1);
+        Node chosenNode = new Node(-1,0);
         int maxCost = Integer.MAX_VALUE;
 
         for(Node item : frontier)
@@ -102,7 +108,7 @@ public class Node {
 
         for (Node child : problem.S(node))
         {
-            Node s = new Node(-1);
+            Node s = new Node(-1,0);
             s.setParent(node);
             s.setNodeID(child.getNodeID());
             s.setPathCost(node.getPathCost() + problem.getTravelCost(node,child));

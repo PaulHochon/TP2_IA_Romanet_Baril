@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Problem {
@@ -7,6 +8,11 @@ public class Problem {
     private int[][] graphMatrix;
     public int[][] getGraphMatrix() {
         return graphMatrix;
+    }
+
+    private HashMap<Integer,Integer> mapping;
+    public HashMap<Integer, Integer> getMapping() {
+        return mapping;
     }
 
     // current state
@@ -31,11 +37,12 @@ public class Problem {
         return currentState.getNodeID() == goalState.getNodeID();
     }
 
-    public Problem(Node initialState, Node goalState, int[][] graphMatrix){
+    public Problem(Node initialState, Node goalState, int[][] graphMatrix, HashMap<Integer,Integer> mapping){
         this.initialState=initialState;
         this.currentState=initialState;
         this.goalState=goalState;
         this.graphMatrix=graphMatrix;
+        this.mapping = mapping;
     }
 
 
@@ -54,7 +61,7 @@ public class Problem {
         for(int i = 0; i<graphMatrix.length ; i++)
         {
             if(graphMatrix[state.getNodeID()][i]!=0){
-                solution.add(new Node(i));
+                solution.add(new Node(i,getMapping().get(i)));
             }
         }
         return solution;

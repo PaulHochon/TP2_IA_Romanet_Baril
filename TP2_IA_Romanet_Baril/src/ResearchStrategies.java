@@ -1,8 +1,11 @@
+/*
 import java.util.*;
 
+*/
 /**
  * Created by adrie on 12/02/2018.
- */
+ *//*
+
 public class ResearchStrategies {
 
 
@@ -112,9 +115,11 @@ public class ResearchStrategies {
                 }
             }
         }
-        /*for(Node nnn : marked){
+        */
+/*for(Node nnn : marked){
             System.out.print(" "+nnn.getNodeID()+" ");
-        }*/
+        }*//*
+
         return marked;
     }
 
@@ -148,3 +153,4 @@ public class ResearchStrategies {
     }
 
 }
+*/

@@ -30,6 +30,15 @@ public class Agent {
         //solutionList = problemTree.Tree_Search(problem,strategyChoice);
     }
 
+    public void PrintSolution(){
+        Node dummy = solutionNode;
+        while(dummy.getParent() != null)
+        {
+            System.out.print(dummy.getNodeID() + " ");
+            dummy = dummy.getParent();
+        }
+    }
+
    /* public void PrintSolution(String strategyChoice){
         System.out.println("\n En utilisant la strategie " + strategyChoice + " nous obtenons le parcours suivant : ");
         for(int i : solutionList){

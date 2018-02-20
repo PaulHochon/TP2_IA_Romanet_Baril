@@ -56,9 +56,9 @@ public class main {
 
 
 
-        int initialPosition = 2;
-        int goalPosition = 12;
-        Problem problem = new Problem(new Node(initialPosition),new Node(goalPosition),graphMatrix);
+        Node initialPosition = new Node(2,straightlinedistance.get(2));
+        Node goalPosition = new Node(12,straightlinedistance.get(12));
+        Problem problem = new Problem(initialPosition,goalPosition,graphMatrix,straightlinedistance);
 
         //strategy choice
         //String strategy ="DepthFirstSearch";
@@ -68,7 +68,7 @@ public class main {
 
         agent.SolveProblem(strategy);
 
-        //agent.PrintSolution(strategy);
+        agent.PrintSolution();
         //System.out.println("SUPERBESTCHILD:  "+ResearchStrategies.getBestChild(agent.getProblemTree().getNodeByID(2,agent.getProblemTree().getRootNode()).getChildren(),agent.getProblemTree().getNodeByID(2,agent.getProblemTree().getRootNode()),agent.getProblemTree()).getNodeID());
     }
 }
