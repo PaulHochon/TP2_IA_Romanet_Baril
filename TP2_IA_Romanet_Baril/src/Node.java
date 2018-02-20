@@ -102,10 +102,10 @@ public class Node {
                         maxCost = item.getCost();
                     }
                 }
-
+                System.out.println("Choice :" + chosenNode.getNodeID() + "Cost : " + chosenNode.getCost());
                 frontier.remove(chosenNode);
                 break;
-                default:
+            default:
                     // random
                     int i = (int)Math.random()*(frontier.size() - 1);
 
@@ -133,6 +133,7 @@ public class Node {
             s.setParent(node);
             s.setNodeID(child.getNodeID());
             s.setPathCost(node.getPathCost() + problem.getTravelCost(node,child));
+            s.setHcost(problem.getMapping().get(s.getNodeID()));
             s.setDepth(node.getDepth() + 1);
             solution.add(s);
         }
