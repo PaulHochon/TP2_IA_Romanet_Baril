@@ -1,3 +1,4 @@
+/*
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -62,7 +63,8 @@ public class Tree {
                 }
         }
 
-        /*if(mapping!=null)
+        */
+/*if(mapping!=null)
         {
             node.setCost(mapping.get(node.getNodeID()));
         }
@@ -82,7 +84,8 @@ public class Tree {
                     CreateTree(problem, newNode, list,mapping);
                 }
             }
-        }*/
+        }*//*
+
     }
 
 
@@ -151,3 +154,4 @@ public class Tree {
     }
 
 }
+*/

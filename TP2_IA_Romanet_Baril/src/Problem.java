@@ -10,28 +10,28 @@ public class Problem {
     }
 
     // current state
-    private int currentState;
-    public int getCurrentState(){
+    private Node currentState;
+    public Node getCurrentState(){
         return currentState;
     }
     
     // initial state
-    private int initialState;
-    public int getInitialState(){
+    private Node initialState;
+    public Node getInitialState(){
         return initialState;
     }
 
     // goal state
-    private int goalState;
-    public int getGoalState(){
+    private Node goalState;
+    public Node getGoalState(){
         return goalState;
     }
 
-    public boolean TestGoal(int currentState){
-        return currentState == goalState;
+    public boolean TestGoal(Node currentState){
+        return currentState.getNodeID() == goalState.getNodeID();
     }
 
-    public Problem(int initialState, int goalState, int[][] graphMatrix){
+    public Problem(Node initialState, Node goalState, int[][] graphMatrix){
         this.initialState=initialState;
         this.currentState=initialState;
         this.goalState=goalState;
@@ -40,8 +40,8 @@ public class Problem {
 
 
     // operators
-    public void GoTo(int nextState){
-        if(graphMatrix[currentState][nextState]!=0){
+    public void GoTo(Node nextState){
+        if(graphMatrix[currentState.getNodeID()][nextState.getNodeID()]!=0){
             currentState = nextState;
             cost+=1;
         }
@@ -49,12 +49,12 @@ public class Problem {
 
 
     // succession's functions
-    public List<Integer> S(int state){
-        List<Integer> solution = new ArrayList<Integer>();
+    public List<Node> S(Node state){
+        List<Node> solution = new ArrayList<>();
         for(int i = 0; i<graphMatrix.length ; i++)
         {
-            if(graphMatrix[state][i]!=0){
-                solution.add(i);
+            if(graphMatrix[state.getNodeID()][i]!=0){
+                solution.add(new Node(i));
             }
         }
         return solution;
@@ -67,9 +67,9 @@ public class Problem {
     }
 
     // cost between nodes linked by an edge
-    public int EdgeCost(int state1, int state2){
-        if(graphMatrix[state1][state2]!=0){
-            return graphMatrix[state1][state2];
+    public int EdgeCost(Node state1, Node state2){
+        if(graphMatrix[state1.getNodeID()][state2.getNodeID()]!=0){
+            return graphMatrix[state1.getNodeID()][state2.getNodeID()];
         }
         else return -1;
     }
