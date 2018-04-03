@@ -19,8 +19,10 @@ public class Simulation {
         HashMap<Hypothese, Double> relations1 = new HashMap<>();
         relations1.put(h1,0.5);
         relations1.put(h2,0.5);
+        relations1.put(h3,0.0);
 
         HashMap<Hypothese, Double> relations2 = new HashMap<>();
+        relations2.put(h1,0.0);
         relations2.put(h2,0.5);
         relations2.put(h3,0.5);
 
