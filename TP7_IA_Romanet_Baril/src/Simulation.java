@@ -33,8 +33,8 @@ public class Simulation {
 
         Double ph2e1e2 = h2.estimation();
 
-        System.out.println(ph1e1);
-        System.out.println(ph2e1e2);
+        System.out.println("P(h1|e1) : "+ph1e1);
+        System.out.println("P(h1|e1_e2) : "+ph2e1e2);
 
     }
 
