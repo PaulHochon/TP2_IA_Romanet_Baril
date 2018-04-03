@@ -27,8 +27,11 @@ public class Simulation {
         Observation e1 = new Observation("Prendre un fusil",relations1);
         Observation e2 = new Observation("Aller à la banque",relations2);
 
+        Double ph1e1 = e1.revision(h1);
+
         Double ph2e1e2 = h2.estimation();
 
+        System.out.println(ph1e1);
         System.out.println(ph2e1e2);
 
     }

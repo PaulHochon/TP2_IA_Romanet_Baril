@@ -26,16 +26,17 @@ public class Hypothese {
         double denominateur=0;
         double intermediaire=1;
         for(Observation o : Observation.observations){
-            if(!o.getRelation(this).isNaN()){
+            if(o.getRelation(this)!=null){
                 numerateur*=o.getRelation(this);
             }
         }
         for(Hypothese h : Hypothese.hypotheses){
             for(Observation o : Observation.observations){
-                if(!o.getRelation(h).isNaN()){
+                if(o.getRelation(h)!=null){
                     intermediaire*=o.getRelation(h);
                 }
             }
+            intermediaire*=h.getProbabilite();
             denominateur+=intermediaire;
             intermediaire=1;
         }

@@ -14,6 +14,8 @@ public class Observation {
     public Observation(String action, HashMap<Hypothese, Double> relations) {
         this.action = action;
         this.relations = relations;
+
+        Observation.observations.add(this);
     }
 
 
@@ -23,7 +25,10 @@ public class Observation {
         double numerateur = hypothese.getProbabilite()* this.getRelation(hypothese);
 
         for(Hypothese h : Hypothese.hypotheses){
-            denominateur += h.getProbabilite() * this.getRelation(h);
+            if(this.getRelation(h) != null){
+                denominateur += h.getProbabilite() * this.getRelation(h);
+
+            }
         }
 
         return numerateur/denominateur;
